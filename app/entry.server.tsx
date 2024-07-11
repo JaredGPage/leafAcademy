@@ -55,7 +55,8 @@ function handleRequestInternal(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  isBot: boolean
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _isBot: boolean
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;

@@ -1,9 +1,13 @@
-import { LoaderFunction, redirect } from "@remix-run/node";
+import {
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  redirect,
+} from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import { signOut, getUserSession } from "../../utils/session.server";
 
-export const loader = async ({ request }) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const sessionUser = await getUserSession(request);
   if (!sessionUser) {
     return redirect("/login");
@@ -12,7 +16,7 @@ export const loader = async ({ request }) => {
   return sessionUser;
 };
 
-export const action = ({ request }) => {
+export const action = ({ request }: ActionFunctionArgs) => {
   return signOut(request);
 };
 

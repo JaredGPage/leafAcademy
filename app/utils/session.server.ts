@@ -24,7 +24,7 @@ const storage = createCookieSessionStorage({
   },
 });
 
-async function createUserSession(idToken, redirectTo) {
+async function createUserSession(idToken: string, redirectTo: string) {
   const token = await getSessionToken(idToken);
   const session = await storage.getSession();
   session.set("token", token);
@@ -36,7 +36,7 @@ async function createUserSession(idToken, redirectTo) {
   });
 }
 
-async function getUserSession(request) {
+async function getUserSession(request: { headers: { get: (arg0: string) => string | null | undefined; }; }) {
   const cookieSession = await storage.getSession(request.headers.get("Cookie"));
   const token = cookieSession.get("token");
   if (!token) return null;
@@ -49,14 +49,14 @@ async function getUserSession(request) {
   }
 }
 
-async function destroySession(request) {
+async function destroySession(request: { headers: { get: (arg0: string) => string | null | undefined; }; }) {
   const session = await storage.getSession(request.headers.get("Cookie"));
   const newCookie = await storage.destroySession(session);
 
   return redirect("/login", { headers: { "Set-Cookie": newCookie } });
 }
 
-async function signOut(request) {
+async function signOut(request: { headers: { get: (arg0: string) => string | null | undefined; }; }) {
   await signOutFirebase();
   return await destroySession(request);
 }
