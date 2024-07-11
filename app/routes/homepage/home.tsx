@@ -1,13 +1,6 @@
-import { LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 
-export const loader: LoaderFunction = async ({ request }) => {
-  return "hello";
-};
-
 export default function Home() {
-  const data = useLoaderData<typeof loader>();
   const [userDropDown, setUserDropDown] = useState(false);
 
   const handleUserClick = () => {

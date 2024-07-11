@@ -1,22 +1,21 @@
 import { useState } from "react";
-import { useActionData, Form, json, redirect } from "@remix-run/react";
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
-import { createAccount } from "../models/account.server";
+import { Form } from "@remix-run/react";
+import type { ActionFunctionArgs, LoaderFunction } from "@remix-run/node";
 import { signUp } from "../utils/db.server";
 import { createUserSession } from "../utils/session.server";
 
 // Loader to ensure user is not logged in
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async () => {
   // Add logic to check if the user is already logged in
   // If logged in, redirect to another page (e.g., dashboard)
   return null;
 };
 
-export const action = async ({ request }) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
 
-  const email = formData.get("email");
-  const password = formData.get("password");
+  const email = (formData.get("email") as string) || "no email";
+  const password = formData.get("password") as string;
 
   const { user } = await signUp(email, password);
   const token = await user.getIdToken();
