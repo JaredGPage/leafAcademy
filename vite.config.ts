@@ -1,16 +1,20 @@
 import { vitePlugin as remix } from "@remix-run/dev";
+import { installGlobals } from "@remix-run/node";
 import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
+
+installGlobals();
 
 export default defineConfig({
   plugins: [
     remix({
-      future: {
-        v3_fetcherPersist: true,
-        v3_relativeSplatPath: true,
-        v3_throwAbortReason: true,
+      routes(defineRoutes) {
+        return defineRoutes((route) => {
+          route("homepage", "routes/homepage/layout.tsx", () => {
+            route("home", "routes/homepage/home.tsx");
+            route("account", "routes/homepage/account.tsx");
+          });
+        });
       },
     }),
-    tsconfigPaths(),
   ],
 });
