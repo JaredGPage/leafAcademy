@@ -16,15 +16,16 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: "18.x" # Ensure Node.js version matches the requirements of Remix Run
+          node-version: "18.x"
 
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build  # Assuming your build script is configured in package.json
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip ./*
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -39,7 +40,7 @@ jobs:
       name: "Production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write # Ensure proper permissions are set
+      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -53,15 +54,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7796B8EFBA2B4D6E83CC208C4C31AF09 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E2EC0A13A2964E1A9108370D06CE0FED }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3915101C62F449109FE49FC5B89FC0CC }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Deploy to Azure Web App
+      - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: "leafacademy"
-          slot-name: "Production" # Ensure this matches your Azure Web App slot name
-          package: . # Deploy the contents of the extracted artifact directory
-
+          slot-name: "Production"
+          package: .
