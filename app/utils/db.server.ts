@@ -41,7 +41,7 @@ if (!getApps().length) {
 }
 
 if (!Firebase) {
-  console.log("There is firebase instance")
+  console.log("There no is firebase instance")
 }
   
 async function signIn(email: string, password: string) {

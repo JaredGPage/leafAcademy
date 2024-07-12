@@ -12,7 +12,10 @@ export function InternalServerError() {
       <p className="text-xl text-leafblue-100">
         Something went wrong on our end. Please try again later.
       </p>
-      <a href="home" className="rounded-full w-1/3 bg-leafblue-200 text-white">
+      <a
+        href="homepage/home"
+        className="rounded-full w-1/3 bg-leafblue-200 text-white"
+      >
         Home
       </a>
     </div>
