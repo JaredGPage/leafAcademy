@@ -1,7 +1,21 @@
+import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 import { useState } from "react";
+import { getUserSession } from "../../utils/session.server";
+import { useLoaderData } from "@remix-run/react";
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  let sessionUser = await getUserSession(request);
+  if (!sessionUser) {
+    sessionUser = null;
+    return sessionUser;
+  }
+
+  return sessionUser;
+};
 
 export default function Home() {
   const [userDropDown, setUserDropDown] = useState(false);
+  const sessionUser = useLoaderData<typeof loader>();
 
   const handleUserClick = () => {
     setUserDropDown(!userDropDown);
@@ -15,18 +29,23 @@ export default function Home() {
   return (
     <>
       <div className="w-full h-14  border-b-2 border-gray-300 justify-end flex space-x-4">
-        <a
-          href="/create-account"
-          className="w-44 h-10 mb-2 rounded-full text-gray-600 font-semibold border-leafblue-400 border-[3px] items-center justify-center flex hover:cursor-pointer"
-        >
-          Create Account
-        </a>
-        <a
-          href="/login"
-          className="w-28 h-10 mb-2 rounded-full text-gray-600 font-semibold border-leafblue-400 border-[3px] items-center justify-center flex hover:cursor-pointer"
-        >
-          Login
-        </a>
+        {!sessionUser && (
+          <>
+            <a
+              href="/create-account"
+              className="w-44 h-10 mb-2 rounded-full text-gray-600 font-semibold border-leafblue-400 border-[3px] items-center justify-center flex hover:cursor-pointer"
+            >
+              Create Account
+            </a>
+            <a
+              href="/login"
+              className="w-28 h-10 mb-2 rounded-full text-gray-600 font-semibold border-leafblue-400 border-[3px] items-center justify-center flex hover:cursor-pointer"
+            >
+              Login
+            </a>
+          </>
+        )}
+
         <div
           role="button"
           tabIndex={0}
@@ -51,7 +70,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <p>Hello</p>
+        <p>Ayo, we are working on something exciting! Stay tuned</p>
       </div>
     </>
   );
