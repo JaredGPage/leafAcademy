@@ -14,7 +14,7 @@ export function NotFound() {
       </p>
       <div className="mt-10 w-full justify-center items-center flex">
         <a
-          href="home"
+          href="homepage/home"
           className="rounded-full w-1/4 h-10 font-semibold text-lg text-center items-center justify-center flex bg-leafblue-200 text-white"
         >
           Home
