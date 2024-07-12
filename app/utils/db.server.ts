@@ -1,6 +1,5 @@
 import admin from "firebase-admin";
 import {
-  applicationDefault,
   initializeApp as initializeAdminApp,
 } from "firebase-admin/app";
 import { FirebaseApp, initializeApp,getApps  } from "firebase/app";
@@ -22,9 +21,17 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
 };
 
+let serviceAccount;
+if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+  serviceAccount = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+} else {
+  // Handle the case where GOOGLE_APPLICATION_CREDENTIALS is not defined
+  console.error("GOOGLE_APPLICATION_CREDENTIALS environment variable is not defined.");
+}
+
 if (!admin.apps.length) {
     initializeAdminApp({
-      credential: applicationDefault(),
+      credential: admin.credential.cert(serviceAccount),
       databaseURL: "https://remix-firebase-3622f.firebaseio.com",
     });
   }
