@@ -29,13 +29,6 @@ Sentry.init({
   profilesSampleRate: 1.0,
 });
 
-interface Context {
-  res: {
-    status: number;
-    body: string;
-  };
-}
-
 const ABORT_DELAY = 5_000;
 
 export default function handleRequest(
