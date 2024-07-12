@@ -14,7 +14,7 @@ export function InternalServerError() {
       </p>
       <a
         href="homepage/home"
-        className="rounded-full w-1/3 bg-leafblue-200 text-white"
+        className="rounded-full w-1/4 h-10 font-semibold text-lg text-center items-center justify-center flex bg-leafblue-200 text-white"
       >
         Home
       </a>
