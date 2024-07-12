@@ -76,7 +76,18 @@ export default function Account() {
           <p className="text-xl text-gray-700 ">Hi, {sessionUser.email}</p>
         </div>
       )}
-      <p>Hey, your signed in! Well done</p>
+      <div className="p-5 flex flex-col">
+        <p>Hey, your signed in! Well done</p>
+        <div className="flex flex-row">
+          <p className="pr-5">Email:</p>
+          <input
+            name="email"
+            type="email"
+            value={sessionUser.email}
+            className="lg:w-1/5 w-full rounded-full border-2 pl-5 border-leafblue-300"
+          ></input>
+        </div>
+      </div>
     </>
   );
 }
