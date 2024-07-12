@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "@remix-run/react";
 import logo from "../../../images/leafLogo.png";
-import pkg from "@heroicons/react/outline";
-const { HomeIcon, UserIcon } = pkg;
+import { HomeIcon, UserIcon } from "@heroicons/react/outline";
 
 const menus = [
   {
