@@ -9,6 +9,7 @@ import {
   getAuth,
   signOut,
 } from "firebase/auth";
+// import {getDatabase, ref, set} from "firebase/database"
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -38,6 +39,8 @@ if (!admin.apps.length) {
 
   const db = admin.firestore();
 const adminAuth = admin.auth();
+
+
 
 let Firebase: FirebaseApp | undefined;
 
@@ -73,5 +76,29 @@ async function signIn(email: string, password: string) {
   async function signOutFirebase() {
     await signOut(getAuth());
   }
+
+  type MoodData = {
+    userId: string;
+    mood: string;
+    note: string;
+    emotions: string[];
+    date: string;
+  };
   
-  export { db, signUp, getSessionToken, signOutFirebase, signIn, adminAuth };
+  async function saveMood({ userId, mood, note, emotions }: Omit<MoodData, 'date'>) {
+    const moodCollection = db.collection("mood");
+    const date = new Date().toISOString();
+    
+    const moodData: MoodData = {
+      userId,
+      mood,
+      note,
+      emotions,
+      date
+    };
+  
+    await moodCollection.add(moodData);
+  }
+
+  
+  export { db, signUp, getSessionToken, signOutFirebase, signIn, adminAuth, saveMood };
