@@ -70,10 +70,10 @@ export default function Home() {
           </svg>
         </div>
       </div>
-      <div className="p-5 overflow-y-scroll scrollbar-none flex h-full w-full">
+      <div className="p-5 overflow-y-scroll scrollbar-none flex flex-col h-full w-full">
         <div className="flex  px-5 rounded-3xl w-[100%] md:w-[99%] h-[300px] md:h-1/4 lg:h-[40%]  bg-leafblue-200 bg-opacity-50">
           <div className="flex flex-col w-full md:w-4/5 lg:w-3/4">
-            <p className="text-gray-700 pt-1 lg:pt-10 text-base lg:text-3xl ml-1 lg:ml-10 font-semibold">
+            <p className="text-leafblue-300 pt-2 lg:pt-10 text-lg lg:text-3xl ml-1 lg:ml-10 font-semibold">
               Welcome to
             </p>
             <p className="text-leafblue-300 font-bold ml-1 lg:ml-10 text-2xl lg:text-5xl">
@@ -91,7 +91,7 @@ export default function Home() {
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
-              stroke="#71bbf6"
+              stroke="#d7faff"
               className="size-0 md:size-40 lg:size-56"
             >
               <path
@@ -101,6 +101,43 @@ export default function Home() {
               />
             </svg>
           </div>
+        </div>
+        <div className="w-[100%] md:w-[99%]  flex flex-col lg:flex-row h-[300px] mt-10 space-y-4 lg:space-y-0 lg:space-x-4">
+          <a
+            href="/mood"
+            className="flex w-full lg:w-1/2 rounded-3xl bg-leafblue-100 bg-opacity-70 h-[60%] hover:cursor-pointer hover:bg-leafblue-100 hover:bg-opacity-80 hover:shadow-md hover:shadow-leafblue-200"
+          >
+            <div className="flex w-1/2 justify-start items-center">
+              <p className="text-white font-semibold text-3xl lg:text-5xl pl-8 lg:pl-20">
+                Mood Tracker
+              </p>
+            </div>
+            <div className="flex justify-end items-center pr-10 w-1/2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="#d7faff"
+                className="size-20 lg:size-28"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-2.625 6c-.54 0-.828.419-.936.634a1.96 1.96 0 0 0-.189.866c0 .298.059.605.189.866.108.215.395.634.936.634.54 0 .828-.419.936-.634.13-.26.189-.568.189-.866 0-.298-.059-.605-.189-.866-.108-.215-.395-.634-.936-.634Zm4.314.634c.108-.215.395-.634.936-.634.54 0 .828.419.936.634.13.26.189.568.189.866 0 .298-.059.605-.189.866-.108.215-.395.634-.936.634-.54 0-.828-.419-.936-.634a1.96 1.96 0 0 1-.189-.866c0-.298.059-.605.189-.866Zm2.023 6.828a.75.75 0 1 0-1.06-1.06 3.75 3.75 0 0 1-5.304 0 .75.75 0 0 0-1.06 1.06 5.25 5.25 0 0 0 7.424 0Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </a>
+          <a
+            href="/homepage/home"
+            className="flex w-full lg:w-1/2 rounded-3xl bg-leafblue-100 bg-opacity-70 h-[60%] hover:cursor-pointer hover:bg-leafblue-100 hover:bg-opacity-80 hover:shadow-md hover:shadow-leafblue-200"
+          >
+            <div className="flex w-1/2 justify-start items-center">
+              <p className="text-white font-semibold text-3xl lg:text-5xl pl-8 lg:pl-20">
+                Coming soon!
+              </p>
+            </div>
+            <div className="flex justify-end items-center pr-10 w-1/2"></div>
+          </a>
         </div>
       </div>
     </>

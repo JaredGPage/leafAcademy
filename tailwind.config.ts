@@ -27,5 +27,10 @@ export default {
       }
     },
   },
+  variants: {
+    extend: {
+      borderColor: ['focus'],
+    },
+  },
   plugins: [],
 } satisfies Config;
