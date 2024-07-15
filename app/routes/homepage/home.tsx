@@ -2,7 +2,7 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { useState } from "react";
 import { getUserSession } from "../../utils/session.server";
-import { useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   let sessionUser = await getUserSession(request);
@@ -71,7 +71,7 @@ export default function Home() {
         </div>
       </div>
       <div className="p-5 overflow-y-scroll scrollbar-none flex flex-col h-full w-full">
-        <div className="flex  px-5 rounded-3xl w-[100%] md:w-[99%] h-[300px] md:h-1/4 lg:h-[40%]  bg-leafblue-200 bg-opacity-50">
+        <div className="flex  px-5 rounded-3xl w-[100%] md:w-[99%] h-[150px] md:h-1/5 lg:h-[25%]  bg-leafblue-200 bg-opacity-50">
           <div className="flex flex-col w-full md:w-4/5 lg:w-3/4">
             <p className="text-leafblue-300 pt-2 lg:pt-10 text-lg lg:text-3xl ml-1 lg:ml-10 font-semibold">
               Welcome to
@@ -79,10 +79,8 @@ export default function Home() {
             <p className="text-leafblue-300 font-bold ml-1 lg:ml-10 text-2xl lg:text-5xl">
               leaf academy
             </p>
-            <p className="text-white lg:w-3/4 w-full pt-2 lg:pt-8 font-semibold text-base lg:text-xl ml-1 lg:ml-20 ">
-              Welcome to my personal corner on the web! This site is a showcase
-              of my abilities and passions. Here, you'll find a variety of
-              content that reflects my journey and skills.
+            <p className="text-white lg:w-3/4 w-full pt-2 lg:pt-4 font-semibold text-base lg:text-xl ml-1 lg:ml-20 ">
+              Helping you and your health!
             </p>
           </div>
           <div className="lg:w-1/4 md:w-1/6 flex justify-end items-end">
@@ -92,7 +90,7 @@ export default function Home() {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="#d7faff"
-              className="size-0 md:size-40 lg:size-56"
+              className="size-0 md:size-36 lg:size-40 xl:size-48"
             >
               <path
                 strokeLinecap="round"
@@ -108,16 +106,16 @@ export default function Home() {
             className="flex w-full lg:w-1/2 rounded-3xl bg-leafblue-100 bg-opacity-70 h-[60%] hover:cursor-pointer hover:bg-leafblue-100 hover:bg-opacity-80 hover:shadow-md hover:shadow-leafblue-200"
           >
             <div className="flex w-1/2 justify-start items-center">
-              <p className="text-white font-semibold text-3xl lg:text-5xl pl-8 lg:pl-20">
+              <p className="text-white font-semibold text-3xl lg:text-4xl xl:text-5xl pl-8 lg:pl-12 xl:pl-20">
                 Mood Tracker
               </p>
             </div>
-            <div className="flex justify-end items-center pr-10 w-1/2">
+            <div className="flex justify-end items-center pr-5 lg:pr-10 w-1/2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="#d7faff"
-                className="size-20 lg:size-28"
+                className="size-14 lg:size-20 xl:size-28"
               >
                 <path
                   fillRule="evenodd"
@@ -140,6 +138,22 @@ export default function Home() {
           </a>
         </div>
       </div>
+      {userDropDown && (
+        <div className="fixed top-0 right-0 border-2 mt-24 mr-4 rounded-3xl border-gray-300 w-[90%] h-[70%] lg:w-1/3 lg:h-1/3 bg-white shadow-lg p-4">
+          <div className="justify-end flex ">
+            <Form method="post">
+              <button
+                className="rounded-full justify-center text-gray-700 items-center border-[2px] flex border-leafblue-200 w-24 h-10"
+                type="submit"
+              >
+                Sign Out
+              </button>
+            </Form>
+          </div>
+
+          <p className="text-xl text-gray-700 ">Hi, {sessionUser?.email}</p>
+        </div>
+      )}
     </>
   );
 }

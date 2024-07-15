@@ -80,18 +80,20 @@ async function signIn(email: string, password: string) {
   type MoodData = {
     userId: string;
     mood: string;
+    percent: string;
     note: string;
     emotions: string[];
     date: string;
   };
   
-  async function saveMood({ userId, mood, note, emotions }: Omit<MoodData, 'date'>) {
+  async function saveMood({ userId, mood, percent, note, emotions }: Omit<MoodData, 'date'>) {
     const moodCollection = db.collection("mood");
     const date = new Date().toISOString();
     
     const moodData: MoodData = {
       userId,
       mood,
+      percent,
       note,
       emotions,
       date
