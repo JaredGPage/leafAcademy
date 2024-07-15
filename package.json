@@ -17,11 +17,13 @@
     "@remix-run/serve": "^2.9.2",
     "@sentry/node": "^8.17.0",
     "@sentry/profiling-node": "^8.17.0",
+    "chart.js": "^4.4.3",
     "dotenv": "^16.4.5",
     "firebase": "^10.12.3",
     "firebase-admin": "^12.2.0",
     "isbot": "^4.1.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
