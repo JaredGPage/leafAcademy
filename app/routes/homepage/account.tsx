@@ -61,11 +61,11 @@ export default function Account() {
         </div>
       </div>
       {userDropDown && (
-        <div className="fixed top-0 right-0 border-2 mt-24 mr-4 border-gray-300 w-[90%] h-[70%] lg:w-1/3 lg:h-1/3 bg-white shadow-lg p-4">
+        <div className="fixed top-0 right-0 border-2 mt-24 mr-4 rounded-3xl border-gray-300 w-[90%] h-[70%] lg:w-1/3 lg:h-1/3 bg-white shadow-lg p-4">
           <div className="justify-end flex ">
             <Form method="post">
               <button
-                className="rounded-full justify-center text-gray-700 items-center border-[3px] flex border-leafblue-200 w-20 h-8"
+                className="rounded-full justify-center text-gray-700 items-center border-[2px] flex border-leafblue-200 w-24 h-10"
                 type="submit"
               >
                 Sign Out
@@ -73,19 +73,24 @@ export default function Account() {
             </Form>
           </div>
 
-          <p className="text-xl text-gray-700 ">Hi, {sessionUser.email}</p>
+          <p className="text-xl text-gray-700 ">Hi, {sessionUser?.email}</p>
         </div>
       )}
       <div className="p-5 flex flex-col">
-        <p>Hey, your signed in! Well done</p>
-        <div className="flex flex-row">
+        <p className="text-slate-600 text-3xl font-semibold">My Account:</p>
+        <div className="flex flex-row mt-10 text-slate-600">
           <p className="pr-5">Email:</p>
           <input
             name="email"
             type="email"
             value={sessionUser.email}
             className="lg:w-1/5 w-full rounded-full border-2 pl-5 border-leafblue-300"
-          ></input>
+          />
+        </div>
+        <div className="mt-10 text-slate-600">
+          <p className="text-lg">
+            We are looking at adding new features to your account!
+          </p>
         </div>
       </div>
     </>
