@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import "../styles/ChartStyle.css";
 
 export interface ProcessedMoodData {
   date: string;
@@ -39,13 +40,35 @@ export const MoodChart = ({ data }: { data: ProcessedMoodData[] }) => {
   };
 
   const options = {
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
         max: 100,
+        ticks: {
+          callback: function () {
+            return "";
+          },
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: "",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false, // Hide the default legend
       },
     },
   };
 
-  return <Line data={chartData} options={options} />;
+  return (
+    <div className="chart-container">
+      <Line data={chartData} options={options} />
+    </div>
+  );
 };

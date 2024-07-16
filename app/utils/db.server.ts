@@ -102,9 +102,9 @@ async function signIn(email: string, password: string) {
     await moodCollection.add(moodData);
   }
 
-  const fetchMoodData = async () => {
-    const snapshot = await db.collection("mood").get();
-  return snapshot.docs.map((doc) => doc.data() as MoodData);
+  const fetchMoodData = async (userId: string): Promise<MoodData[]> => {
+    const snapshot = await db.collection("mood").where("userId", "==", userId).get();
+    return snapshot.docs.map((doc) => doc.data() as MoodData);
   };
 
   
