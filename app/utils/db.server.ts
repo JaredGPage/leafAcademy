@@ -77,14 +77,14 @@ async function signIn(email: string, password: string) {
     await signOut(getAuth());
   }
 
-  type MoodData = {
-    userId: string;
-    mood: string;
-    percent: string;
+  export interface MoodData {
+    date: string;
     note: string;
     emotions: string[];
-    date: string;
-  };
+    mood: string;
+    userId: string;
+    percent: string;
+  }
   
   async function saveMood({ userId, mood, percent, note, emotions }: Omit<MoodData, 'date'>) {
     const moodCollection = db.collection("mood");
@@ -102,5 +102,10 @@ async function signIn(email: string, password: string) {
     await moodCollection.add(moodData);
   }
 
+  const fetchMoodData = async (userId: string): Promise<MoodData[]> => {
+    const snapshot = await db.collection("mood").where("userId", "==", userId).get();
+    return snapshot.docs.map((doc) => doc.data() as MoodData);
+  };
+
   
-  export { db, signUp, getSessionToken, signOutFirebase, signIn, adminAuth, saveMood };
+  export { db, signUp, getSessionToken, signOutFirebase, signIn, adminAuth, saveMood, fetchMoodData };

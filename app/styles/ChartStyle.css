@@ -1,0 +1,56 @@
+.chart-wrapper {
+    position: relative;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding-left: 40px; /* Space for y-axis labels */
+    padding-bottom: 10px; /* Space for x-axis labels */
+  }
+  
+  .chart-container {
+    position: relative;
+    min-width: 700px; /* Adjust as needed */
+    height: 500px; /* Adjust as needed */
+  }
+  
+  .fixed-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #4a5568; /* Same as text-slate-600 */
+    background: white; /* Ensure it's readable */
+    z-index: 10;
+  }
+  
+  .fixed-y-labels {
+    position: absolute;
+    top: 50px; /* Adjust to match the chart's top offset */
+    left: 2px;
+    border-radius: 2000px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 455px; /* Match the chart's height */
+    justify-content: space-between;
+    padding-left: 10px;
+    background: white; /* Ensure it's readable */
+  }
+  
+  .fixed-x-label {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4a5568; /* Same as text-slate-600 */
+/* Ensure it's readable */
+    z-index: 10;
+    padding-top: 10px;
+  }
+  
